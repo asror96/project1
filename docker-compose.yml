@@ -1,0 +1,42 @@
+version: "3.8"
+
+services:
+  web:
+    build:
+      context: ./server/nginx
+      dockerfile: Dockerfile
+    ports:
+      - target: 80
+        published: 8000
+        protocol: tcp
+        mode: host
+    volumes:
+      - ./server/app/:/var/www
+      - ./server/nginx/conf.d:/etc/nginx/conf.d
+    container_name: project_web
+
+  db:
+    env_file:
+      - .env
+    image: postgres:latest
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_DATABASE}
+    container_name: project_db
+  app:
+    build:
+      context: ./server/app
+      dockerfile: Dockerfile
+    env_file:
+      - .env
+    volumes:
+      - ./server/app:/var/www
+
+    depends_on:
+      - web
+      - db
+    container_name: project_app
