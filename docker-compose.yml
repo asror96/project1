@@ -35,7 +35,6 @@ services:
       - .env
     volumes:
       - ./server/app:/var/www
-
     depends_on:
       - web
       - db

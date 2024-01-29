@@ -42,4 +42,24 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function evaluations(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Evaluation::class,'user_id','id');
+    }
+
+    public function photos(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(PhotoUser::class,'user_id','id');
+    }
+
+    public function notifications(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Notification::class,'user_id','id');
+    }
+
+    public function favorites(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Favorite::class,'user_id','id');
+    }
 }

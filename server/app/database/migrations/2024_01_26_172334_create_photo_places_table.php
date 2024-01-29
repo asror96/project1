@@ -17,6 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('place_id')->nullable();
             $table->index('place_id','photo_place_idx');
             $table->foreign('place_id','photo_place_fk')->on('places')->references('id');
+            $table->timestamps();
         });
     }
 

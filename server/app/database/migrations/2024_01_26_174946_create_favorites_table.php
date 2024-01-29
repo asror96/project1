@@ -23,6 +23,7 @@ return new class extends Migration
             $table->foreign('place_id','favorite_place_fk')->on('places')->references('id');
 
             $table->date('travel_date');
+            $table->timestamps();
         });
     }
 

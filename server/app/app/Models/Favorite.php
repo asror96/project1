@@ -8,4 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Favorite extends Model
 {
     use HasFactory;
+    protected $table='favorites';
+    protected $guarded=false;
+
+    public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(User::class,'user_id','id');
+    }
+    public function place(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(Place::class,'place_id','id');
+    }
+
 }

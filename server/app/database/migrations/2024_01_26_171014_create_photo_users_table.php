@@ -16,6 +16,9 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id')->nullable();
             $table->index('user_id','photo_user_idx');
             $table->foreign('user_id','photo_user_fk')->on('users')->references('id');
+
+            $table->string('photo');
+            $table->timestamps();
         });
     }
 
