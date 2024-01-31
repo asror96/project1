@@ -25,6 +25,7 @@ class PlaceFactory extends Factory
             'latitude' => (string)((rand(0,9999999)/10000)*$number),
             'category_id' => rand(1,5),
             'evaluation'=>'5.0',
+            'country_id'=>rand(1,100)
         ];
     }
 }

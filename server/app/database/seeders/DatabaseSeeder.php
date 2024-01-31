@@ -24,7 +24,7 @@ class DatabaseSeeder extends Seeder
         \App\Models\Category::create(['name' => 'Extreme']);
         \App\Models\Category::create(['name' => 'Naturals']);
         \App\Models\Category::create(['name' => 'Specific']);
-
+        \App\Models\Country::factory(100)->create();
         \App\Models\Place::factory(10)->create();
 
          for( $i=1;$i<=10;$i++){

@@ -14,6 +14,10 @@ class Place extends Model
     {
         return $this->belongsTo(Category::class,'category_id','id');
     }
+    public function country(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(Country::class,'country_id','id');
+    }
     public function photos(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(PhotoPlace::class,'place_id','id');
@@ -27,4 +31,6 @@ class Place extends Model
     {
         return $this->hasMany(Favorite::class,'place_id','id');
     }
+
+
 }
