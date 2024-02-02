@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->string('photo');
-            $table->boolean('status');
+            $table->boolean('status')->default(true);
             $table->string('role')->default('user');
             $table->timestamps();
         });

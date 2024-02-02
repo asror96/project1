@@ -14,8 +14,8 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
+Route::group([ 'prefix' => '/users'], function ($router) {
+    Route::post('/',[\App\Http\Controllers\UserController::class,'create'])->name('create.users');
+    Route::post('/login',[\App\Http\Controllers\UserController::class,'login'])->name('create.login');
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
 });
-Route::get('/test/',[TestController::class,'index'])->name('index');
