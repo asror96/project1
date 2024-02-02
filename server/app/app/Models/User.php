@@ -41,6 +41,7 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
+        'role'=>\App\Enum\UserRoleEnum::class
     ];
 
     public function evaluations(): \Illuminate\Database\Eloquent\Relations\HasMany

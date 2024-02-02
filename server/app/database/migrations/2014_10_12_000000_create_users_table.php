@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('photo');
             $table->boolean('status');
-            $table->boolean('is_admin')->default(false);
+            $table->string('role')->default('user');
             $table->timestamps();
         });
     }
