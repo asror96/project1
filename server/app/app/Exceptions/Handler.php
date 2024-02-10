@@ -27,7 +27,7 @@ class Handler extends ExceptionHandler
             //
         });
     }
-    public function render($request, Throwable $exception)
+    /*public function render($request, Throwable $exception)
     {
         return response()->json([
             'error' => $exception->getMessage(),
@@ -41,6 +41,6 @@ class Handler extends ExceptionHandler
             : 500;
 
         return !is_numeric($status) ? 500 : $status;
-    }
+    }*/
 
 }

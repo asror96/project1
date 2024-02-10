@@ -1,25 +1,18 @@
 <?php
 
-namespace App\Http\Requests;
+namespace app\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
+use Orion\Http\Requests\Request;
 
-class StoreUserRequest extends FormRequest
+class StoreUserRequest extends Request
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     */
     public function authorize(): bool
     {
         return true;
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
-     */
-    public function rules(): array
+    public function storeRules(): array
     {
         return [
             'name' => 'required|string|max:255',
@@ -28,7 +21,6 @@ class StoreUserRequest extends FormRequest
             'password' => 'min:8|required_with:password_confirmation|same:password_confirmation',
             'password_confirmation' => 'min:8',
             'photo' => ['required', 'string'],
-            //'extensions:jpg,png'
         ];
     }
 }

@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Models;
+namespace app\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Throwable;
 
 class Place extends Model
 {
@@ -29,8 +30,27 @@ class Place extends Model
     }
     public function favorites(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
+
         return $this->hasMany(Favorite::class,'place_id','id');
     }
 
 
+    /*public function checkFavorites($place,$user)
+    {
+        try{
+            return (Favorite::where('user_id',$user->id)->where('place_id',$place->id)->get())[0];
+        }
+        catch (Throwable $e){
+            report($e);
+            return response()->json('Не входить в избранные!',400);
+        }
+    }*/
+
+    public static function boot(): \Illuminate\Http\JsonResponse
+    {
+        /*static::creating(function () {
+
+        });*/
+        parent::boot();
+    }
 }

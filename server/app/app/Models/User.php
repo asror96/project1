@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Models;
+namespace app\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Events\UserCreatedEvent;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -49,6 +49,7 @@ class User extends Authenticatable implements JWTSubject
         'role'=>\App\Enum\UserRoleEnum::class
     ];
 
+
     public function evaluations(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(Evaluation::class,'user_id','id');
@@ -77,5 +78,33 @@ class User extends Authenticatable implements JWTSubject
     public function getJWTCustomClaims(): array
     {
         return [];
+    }
+    /*protected $dispatchesEvents = [
+        'created'=>\App\Models\EventAdmin::class
+    ];*/
+    public function notificationAdmin(): void
+    {
+        UserCreatedEvent::dispatch();
+    }
+    public static function boot():void
+    {
+        parent::boot();
+
+        self::creating(function($model){
+
+        });
+        self::created(fn(self $model)=>$model->notificationAdmin());
+        self::updating(function($model){
+
+        });
+        self::updated(function($model){
+
+        });
+        self::deleting(function($model){
+
+        });
+        self::deleted(function($model){
+
+        });
     }
 }

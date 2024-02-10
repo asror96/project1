@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('photo');
             $table->boolean('status')->default(true);
             $table->string('role')->default('user');
+            $table->rememberToken();
             $table->timestamps();
         });
     }

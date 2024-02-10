@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Providers;
+namespace app\Providers;
 
 use App\Events\UserCreatedEvent;
 use App\Listeners\UserCreatedListener;
